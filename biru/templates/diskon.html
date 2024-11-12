@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diskon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            width: 600px;
+            border: 2px solid #000;
+            padding: 20px;
+            border-radius: 8px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .tab-button {
+            flex: 1;
+            padding: 10px;
+            cursor: pointer;
+            border: 1px solid #000;
+            background-color: #f0f0f0;
+            font-weight: bold;
+            border-radius: 5px 5px 0 0;
+        }
+        .tab-button.active {
+            background-color: #ddd;
+            border-bottom: 2px solid white;
+        }
+        .content-section {
+            display: none;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #000;
+            padding: 10px;
+            border-radius: 0 0 5px 5px;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #000;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .item div {
+            flex: 1;
+            text-align: center;
+        }
+        .button-buy {
+            padding: 5px 10px;
+            border: 1px solid #000;
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+        .button-buy:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>DISKON</h1>
+
+    <div class="tab-buttons">
+        <div id="voucherTab" class="tab-button active" onclick="showSection('voucher')">Voucher</div>
+        <div id="promoTab" class="tab-button" onclick="showSection('promo')">Promo</div>
+    </div>
+
+    <div id="voucherSection" class="content-section active">
+        <h2>Voucher</h2>
+        <!-- Data dummy untuk scroll -->
+        <div class="item">
+            <div>Kode</div>
+            <div>Potongan</div>
+            <div>Min Transaksi Pemesanan</div>
+            <div>Jumlah Hari Berlaku</div>
+            <div>Kuota Penggunaan</div>
+            <div>Harga</div>
+            <div><button class="button-buy">Button Beli</button></div>
+        </div>
+        <!-- Salin data dummy untuk testing scroll -->
+        <div class="item">
+            <div>Kode</div>
+            <div>Potongan</div>
+            <div>Min Transaksi Pemesanan</div>
+            <div>Jumlah Hari Berlaku</div>
+            <div>Kuota Penggunaan</div>
+            <div>Harga</div>
+            <div><button class="button-buy">Button Beli</button></div>
+        </div>
+        <div class="item">
+            <div>Kode</div>
+            <div>Potongan</div>
+            <div>Min Transaksi Pemesanan</div>
+            <div>Jumlah Hari Berlaku</div>
+            <div>Kuota Penggunaan</div>
+            <div>Harga</div>
+            <div><button class="button-buy">Button Beli</button></div>
+        </div>
+        <div class="item">
+            <div>Kode</div>
+            <div>Potongan</div>
+            <div>Min Transaksi Pemesanan</div>
+            <div>Jumlah Hari Berlaku</div>
+            <div>Kuota Penggunaan</div>
+            <div>Harga</div>
+            <div><button class="button-buy">Button Beli</button></div>
+        </div>
+        <!-- Tambahkan lebih banyak data dummy sesuai kebutuhan -->
+    </div>
+
+    <div id="promoSection" class="content-section">
+        <h2>Promo</h2>
+        <div class="item">
+            <div>Kode</div>
+            <div>Tanggal Akhir Berlaku</div>
+        </div>
+        <div class="item">
+            <div>Kode</div>
+            <div>Tanggal Akhir Berlaku</div>
+        </div>
+        <!-- Tambahkan data promo lainnya sesuai kebutuhan -->
+    </div>
+</div>
+
+<script>
+    function showSection(section) {
+        const voucherTab = document.getElementById("voucherTab");
+        const promoTab = document.getElementById("promoTab");
+        const voucherSection = document.getElementById("voucherSection");
+        const promoSection = document.getElementById("promoSection");
+
+        if (section === 'voucher') {
+            voucherSection.classList.add("active");
+            promoSection.classList.remove("active");
+            voucherTab.classList.add("active");
+            promoTab.classList.remove("active");
+        } else if (section === 'promo') {
+            promoSection.classList.add("active");
+            voucherSection.classList.remove("active");
+            promoTab.classList.add("active");
+            voucherTab.classList.remove("active");
+        }
+    }
+</script>
+
+</body>
+</html>

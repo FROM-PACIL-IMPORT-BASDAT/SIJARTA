@@ -1,0 +1,38 @@
+{% extends 'base_guest.html' %}
+
+{% block content %}
+  <div class="landing-page">
+    <h2>Welcome to Our Landing Page!</h2>
+    <p>Silakan pilih halaman berikut:</p>
+
+    <div class="button-container">
+      <a href="{% url 'main:try_pengguna' %}">
+        <button>Pengguna</button>
+      </a>
+      <a href="{% url 'main:try_pekerja' %}">
+        <button>Pekerja</button>
+      </a>
+    </div>
+  </div>
+
+  <style>
+    .landing-page {
+      text-align: center;
+      margin-top: 50px;
+    }
+    
+    .button-container {
+      margin-top: 20px;
+    }
+    
+    .button-container a {
+      margin: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+{% endblock content %}

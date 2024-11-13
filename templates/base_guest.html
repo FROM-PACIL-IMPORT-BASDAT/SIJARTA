@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <nav>
+      <div>
+        <a href="{% url 'accounts:login' %}">Login</a>
+        <a href="{% url 'accounts:register' %}">Register</a>
+        <button class="toggle-mobile-nav-btn">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content Block untuk Halaman Lain -->
+  <div>
+    {% block content %}
+    {% endblock content %}
+  </div>
+
+{% endblock body %}

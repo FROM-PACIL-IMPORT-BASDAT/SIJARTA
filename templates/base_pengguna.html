@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <nav>
+    <div>
+      <h1>Pengguna</h1> 
+
+      <div>
+        <a href="{% url 'order:homepage' %}">
+          <span>Homepage</span>
+        </a>
+        <a href="{% url 'mypay:main' %}">
+          <span>MyPay</span>
+        </a>
+        <a href="{% url 'order:my_order' %}">
+          <span>Kelola Pesanan Saya</span>
+        </a>
+        <a href="{% url 'discount:main' %}">
+          <span>Diskon</span>
+        </a>
+        <a href="{% url 'accounts:profile' %}">
+          <span>Profile</span>
+        </a>
+      </div>
+
+      <h2>Hai, [nama]</h2> 
+
+      <div>
+        <a href="{% url 'accounts:logout' %}">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content Block untuk Halaman Lain -->
+  <div>
+    {% block content %}
+    {% endblock content %}
+  </div>
+
+{% endblock body %}

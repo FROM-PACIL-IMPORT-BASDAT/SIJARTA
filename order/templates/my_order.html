@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+
+<style>
+    button {
+        border-width: 1px;
+        border-color: rgb(209 213 219);
+        text-align: center;
+        transition: all 0.2s ease;
+        width: 100%;
+        }
+
+    button:hover {
+        background-color: rgb(209 213 219);
+    }
+
+    button:active {
+        transform: scale(0.95);
+    }
+
+    .scrollable-content {
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+        .scrollable-content {
+            overflow-x: auto;
+        }
+    }
+</style>
+
+{% endblock meta %}
+
+{% block body %}
+
+<div class="overflow-x-hidden p-4 relative flex flex-col items-center justify-center mt-6">
+    <div class="relative w-full md:w-1/2 mb-2">
+        <!-- Filter -->
+        <div id="filterForm">
+            <form method="get" class="flex flex-col md:flex-row p-6 gap-2">
+                <!-- Filter Subkategori -->
+                <div class="mb-4 w-full md:w-2/5">
+                    <select id="subkategori" name="subkategori" class="block w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 transition duration-200">
+                        <option value="" disabled selected>Subkategori</option>
+                        <option value="">All</option>
+                        {% for sub in filter_sub %}
+                            <option value="{{ sub }}" {% if request.GET.subkategori == sub %}selected{% endif %}>
+                            {{ sub }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Filter Status Pesanan -->
+                <div class="mb-4 w-full md:w-2/5">
+                    <select id="status" name="status" class="block w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 transition duration-200">
+                        <option value="" disabled selected>Status Pesanan</option>
+                        <option value="">All</option>
+                        {% for stat in filter_stat %}
+                            <option value="{{ stat }}" {% if request.GET.status == stat %}selected{% endif %}>
+                            {{ stat }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Filter Button -->
+                <div class="flex items-center justify-center w-full md:w-1/5 mb-4">
+                    <button type="submit" class="p-2">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- List Kategori dan Subkategori -->
+    <div  class="md:w-1/2 mb-6 flex flex-col gap-2">
+        {% for sub in subkategori %}
+            {% for stat in status %}
+                <div class="grid grid-cols-5 md:grid-cols-7 gap-4 border border-gray-300 p-2">
+                    <div class="scrollable-content">{{ sub }}</div>
+                    <div class="scrollable-content">Sesi Layanan</div>
+                    <div class="scrollable-content">Harga</div>
+                    <div class="scrollable-content">Nama Pekerja</div>
+                    <div class="scrollable-content">{{ stat }}</div>
+                    <div class="grid grid-cols-subgrid gap-4 col-span-5 md:col-span-2 items-center justify-center">
+                        {% if stat == 'Pesanan Selesai' %}
+                            <div class="col-start-2 col-span-3 md:col-span-1 md:col-start-2">
+                                <button>Buat Testimoni</button>
+                            </div>
+                        {% else %}
+                        <div class="col-start-2 col-span-3 md:col-span-1 md:col-start-2">
+                            <button>Batalkan</button>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block meta %}
+
+<style>
+    button {
+        border-width: 1px;
+        border-color: rgb(209 213 219);
+        text-align: center;
+        transition: all 0.2s ease;
+        width: 100%;
+        }
+
+    button:hover {
+        background-color: rgb(209 213 219);
+    }
+
+    button:active {
+        transform: scale(0.95);
+    }
+</style>
+
+{% endblock meta %}
+
+{% block body %}
+
+<div class="overflow-x-hidden p-4 relative flex flex-col items-center justify-center mt-6">
+    <div class="relative w-full md:w-1/2 mb-2">
+        <!-- Filter -->
+        <div id="filterForm">
+            <form method="get" class="flex flex-col md:flex-row p-6 gap-2">
+                <!-- Filter Kategori -->
+                <div class="mb-4 w-full md:w-2/5">
+                    <select id="kategori" name="kategori" class="block w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 transition duration-200">
+                        <option value="" disabled selected>Kategori</option>
+                        <option value="">All</option>
+                        {% for key, value in filter.items %}
+                            <option value="{{ key }}" {% if request.GET.kategori == key %}selected{% endif %}>
+                            {{ key|title }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Filter Subkategori -->
+                <div class="mb-4 w-full md:w-2/5">
+                    <input type="text" name="subkategori" id="subkategori" placeholder="Nama Subkategori" value="{{ request.GET.subkategori }}" class="w-full p-2 border border-gray-300 shadow-sm focus:outline-none focus:ring-2 transition duration-200">
+                </div>
+
+                <!-- Filter Button -->
+                <div class="flex items-center justify-center w-full md:w-1/5 mb-4">
+                    <button type="submit" class="p-2">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- List Kategori dan Subkategori -->
+    <div  class="relative w-full md:w-1/2 mb-6 flex flex-col gap-2">
+        {% for key, value in data.items %}
+            {% if value %}
+                <div class="flex flex-col w-full">
+                    <div class="m-2 p-2 mb-0 border border-gray-300">{{ key|title }}</div>
+                    {% for item in value %}
+                        <div class="my-0 ml-10 mr-2">
+                            <a href="{% url 'order:subkategori_layanan' item %}">
+                                <button class="p-2 text-left">{{ item }} </button>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+
+</script>
+{% endblock body %}
